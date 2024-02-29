@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "LangLab",
+  "version": "1.0",
+  "description": "This is my first extension",
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

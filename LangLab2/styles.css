@@ -1,0 +1,18 @@
+.container {
+    width 300px;
+    padding 20px;
+}
+
+#wordInput {
+    width calc(100% - 80px);
+    margin-bottom 10px;
+}
+
+#searchButton {
+    width 80px;
+    margin-bottom 10px;
+}
+
+#results {
+    margin-top 10px;
+}
