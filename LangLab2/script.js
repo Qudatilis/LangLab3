@@ -1,40 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Arama düğmesine tıklandığında
-    document.getElementById('searchButton').addEventListener('click', function() {
-        // Kullanıcının girdiği kelimeyi al
-        var word = document.getElementById('wordInput').value.trim();
-        
-        // Kelimenin boş olup olmadığını kontrol et
-        if (word === '') {
-            alert('Lütfen bir kelime girin');
-            return;
-        }
-        
-        // Arama sonuçlarını göstereceğimiz alanı seç
-        var searchResultsDiv = document.getElementById('searchResults');
-        // Temizle
-        searchResultsDiv.innerHTML = '';
-
-        // Cambridge Dictionary'de arama yap
-        var cambridgeUrl = 'https://dictionary.cambridge.org/dictionary/english/' + encodeURIComponent(word);
-        appendSearchResult(searchResultsDiv, 'Cambridge Dictionary', cambridgeUrl);
-
-        // Collins Dictionary'da arama yap
-        var collinsUrl = 'https://www.collinsdictionary.com/dictionary/english/' + encodeURIComponent(word);
-        appendSearchResult(searchResultsDiv, 'Collins Dictionary', collinsUrl);
-
-        // Tureng'de arama yap
-        var turengUrl = 'https://tureng.com/tr/turkce-ingilizce/' + encodeURIComponent(word);
-        appendSearchResult(searchResultsDiv, 'Tureng', turengUrl);
-    });
-
-    // Arama sonuçlarını gösterme fonksiyonu
-    function appendSearchResult(parentDiv, siteName, url) {
-        var link = document.createElement('a');
-        link.href = url;
-        link.textContent = siteName;
-        link.target = '_blank';
-        parentDiv.appendChild(link);
-        parentDiv.appendChild(document.createElement('br')); // Boşluk ekleyelim
-    }
+document.getElementById('searchButton').addEventListener('click', function() {
+    var word = document.getElementById('wordInput').value;
+    search(word);
 });
+
+function search(word) {
+    var resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // Temizle
+
+    // Cambridge Dictionary
+    var cambridgeURL = 'https://dictionary.cambridge.org/dictionary/english/' + encodeURIComponent(word);
+    var cambridgeResult = '<div class="result"><h3>Cambridge Dictionary</h3><p><a href="' + cambridgeURL + '" target="_blank">' + cambridgeURL + '</a></p></div>';
+    resultsDiv.insertAdjacentHTML('beforeend', cambridgeResult);
+
+    // Collins Dictionary
+    var collinsURL = 'https://www.collinsdictionary.com/dictionary/english/' + encodeURIComponent(word);
+    var collinsResult = '<div class="result"><h3>Collins Dictionary</h3><p><a href="' + collinsURL + '" target="_blank">' + collinsURL + '</a></p></div>';
+    resultsDiv.insertAdjacentHTML('beforeend', collinsResult);
+
+    // Tureng
+    var turengURL = 'https://tureng.com/tr/turkce-ingilizce/' + encodeURIComponent(word);
+    var turengResult = '<div class="result"><h3>Tureng</h3><p><a href="' + turengURL + '" target="_blank">' + turengURL + '</a></p></div>';
+    resultsDiv.insertAdjacentHTML('beforeend', turengResult);
+}
